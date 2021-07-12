@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package grpc;
+
+option go_package = "grpc-go-example/proto";
+
+message Item {
+    enum ItemPriority {
+        LOW = 0;
+        MID = 50;
+        HIGH = 100;
+    }
+
+    enum ItemStatus {
+        INACTIVE = 0;
+        ACTIVE = 1;
+    }
+
+    string id = 1;
+    string wish_list_id = 2;
+    string name = 3;
+    string link = 4;
+    double price = 5;
+    ItemPriority priority = 6;
+    ItemStatus status = 7;
+}
+
+message WishList {
+    enum WishListStatus {
+        INACTIVE = 0;
+        ACTIVE = 1;
+    }
+
+    string id = 1;
+    string name = 2;
+    WishListStatus status = 3;
+}
+
+message CreateWishListRequest {
+    WishList wish_list = 1;
+}
+
+message CreateWishListResponse {
+    string wish_list_id = 1;
+}
+
+message AddItemRequest {
+    Item item = 1;
+}
+
+message AddItemResponse {
+    repeated Item items = 1;
+}
+
+message ListWishListRequest {
+    string wish_list_id = 1;
+}
+
+message ListWishListResponse {
+    repeated Item items = 1;
+}
+
+service WishListService {
+    rpc Create(CreateWishListRequest) returns (CreateWishListResponse);
+    rpc Add(AddItemRequest) returns (AddItemResponse);
+    rpc List (ListWishListRequest) returns (ListWishListResponse);
+}
