@@ -1,9 +1,9 @@
 package main
 
 import (
-	pb "grpc-go-example/proto"
 	"context"
 	"fmt"
+	pb "github.com/mariamorav/grpc-go-example/proto"
 	"google.golang.org/grpc"
 	"net"
 )

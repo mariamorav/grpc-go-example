@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	pb "github.com/mariamorav/grpc-go-example/proto"
 	"google.golang.org/grpc"
-	pb "grpc-go-example/proto"
 	"math/rand"
 	"strconv"
 	"time"
